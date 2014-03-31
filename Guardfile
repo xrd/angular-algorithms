@@ -48,3 +48,4 @@ guard 'livereload', input: 'web' do
 end
 
 guard 'coffeescript', :input => 'coffee', output: 'web'
+guard 'coffeescript', :input => 'spec', output: 'test'
