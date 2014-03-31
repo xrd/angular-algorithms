@@ -9,16 +9,12 @@
 # notifications: true                send notifictions to Growl/libnotify/Notifu
 # haml_options: { ugly: true }    pass options to the Haml engine
 
-guard :haml, output: 'web', input: 'haml' do
-  watch %r{^.+(\.haml)$}
-end
-
 guard :haml, output: 'web', input: 'templates' do
-  watch %r{^.+(\.haml)$}
+  watch %r{^.+(\.html\.haml)$}
 end
 
-guard 'livereload' do
-  watch(%r{^web/.+\.(css|js|html)$})
+guard 'livereload', input: 'web' do
+  watch(%r{^.+\.(css|js|html)$})
 end
 
 guard 'coffeescript', :input => 'coffee', output: 'web'
