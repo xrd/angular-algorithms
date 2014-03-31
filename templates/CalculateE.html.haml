@@ -1,2 +1,6 @@
 .algorithm{ 'ng-controller' => 'CalculateECtrl' }
-  Hi there, this is E
+
+  %button.btn{ 'ng-click' => 'time(count)' } Time {{count}}
+  %input{ 'ng-model' => 'count', placeholder: 'Enter the count to time' }
+  #placeholder{ "style" => "width:600px;height:300px;" }
+  

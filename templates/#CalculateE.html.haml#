@@ -1,3 +1,0 @@
-.algorithm{ 'ng-controller' => 'CalculateECtrl' }
-  Hi there, this is E
-  

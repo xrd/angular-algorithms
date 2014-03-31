@@ -74,29 +74,54 @@
 
   this.app.controller('CalculateECtrl', [
     '$scope', function($scope) {
-      $scope.start = function(n) {
-        console.log("Starting to calculate");
-        $scope.e = 0;
-        return $scope.e = $scope.calculate(n, $scope.e);
-      };
+      $scope.summer = $scope.sum;
       $scope.factorial = function(n) {
-        console.log("Inside factorial for " + n);
         if (0 === n) {
           return 1;
         } else {
           return n * $scope.factorial(n - 1);
         }
       };
-      return $scope.calculate = function(n, current) {
-        if (current == null) {
-          current = 0;
-        }
-        console.log("Inside calculate with " + n + ", " + current);
+      $scope.sum = function(n) {
+        var fact;
         if (0 === n) {
           return 1;
         } else {
-          return current + $scope.calculate(1 / $scope.factorial(n - 1));
+          fact = $scope.factorial(n);
+          return $scope.sum(n - 1) + (1.0 / fact);
         }
+      };
+      $scope.ss = function(msg) {
+        $scope.status = msg;
+        return console.log(msg);
+      };
+      $scope.count = 10;
+      $scope.timeIterator = function(n) {
+        var num, _i, _ref;
+        $scope.data = [];
+        $scope.timings = [];
+        $scope.ss("Starting timing");
+        for (num = _i = 1, _ref = n + 1; 1 <= _ref ? _i <= _ref : _i >= _ref; num = 1 <= _ref ? ++_i : --_i) {
+          $scope.time(num);
+          $scope.draw($scope.data);
+        }
+        return $scope.ss("Starting timing");
+      };
+      return $scope.time = function(n) {
+        var minusOne, start, stop;
+        if (!$scope.data) {
+          $scope.data = [];
+        }
+        minusOne = n - 1;
+        $scope.ss("Timing iteraton: " + n);
+        $scope.data[minusOne] = {};
+        start = new Date().getMilliseconds();
+        $scope.data[minusOne].label = "Timing #" + minusOne;
+        $scope.sum(minusOne);
+        stop = new Date().getMilliseconds();
+        $scope.data[minusOne].data = [];
+        $scope.data[minusOne].data.push(minusOne);
+        return $scope.data[minusOne].data.push(stop - start);
       };
     }
   ]);

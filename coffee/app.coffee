@@ -36,24 +36,50 @@
 
 @app.controller 'CalculateECtrl', [ '$scope', ($scope) ->
 
-        $scope.start = (n) ->
-                console.log "Starting to calculate"
-                $scope.e = 0
-                $scope.e = $scope.calculate( n, $scope.e )
+        $scope.summer = $scope.sum
 
         $scope.factorial = (n) ->
-                console.log "Inside factorial for #{n}"
+                #console.log "Inside factorial for #{n}"
                 if 0 == n
                         1
                 else
                         n * $scope.factorial( n - 1 )
 
-        $scope.calculate = ( n, current=0 ) ->
-                console.log "Inside calculate with #{n}, #{current}"
+        $scope.sum = ( n ) ->
                 if 0 == n
                         1
-                else 
-                        current + $scope.calculate( 1 / $scope.factorial( n-1 ) )
+                else
+                        fact = $scope.factorial( n )
+                        # console.log "Fact for #{n-1}: #{fact}"
+                        $scope.sum( n - 1 ) + ( 1.0 / fact )
+
+        $scope.ss = (msg) ->
+                $scope.status = msg
+                console.log msg
+
+        $scope.count = 10
+
+        $scope.timeIterator = (n) ->
+                $scope.data = []
+                $scope.timings = []
+                $scope.ss "Starting timing"
+                for num in [1..n+1]
+                        $scope.time( num )
+                        $scope.draw($scope.data)                      
+                $scope.ss "Starting timing"
+
+        $scope.time = (n) ->
+                $scope.data = [] unless $scope.data
+                minusOne = n-1
+                $scope.ss "Timing iteraton: #{n}"
+                $scope.data[minusOne] = {}
+                start = new Date().getMilliseconds()
+                $scope.data[minusOne].label = "Timing ##{minusOne}"
+                $scope.sum( minusOne )
+                stop = new Date().getMilliseconds()
+                $scope.data[minusOne].data = []
+                $scope.data[minusOne].data.push( minusOne )
+                $scope.data[minusOne].data.push( stop - start )
 
         ]
 
