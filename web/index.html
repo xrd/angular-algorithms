@@ -5,14 +5,16 @@
   <body ng-app='gi'>
     <div class='container' ng-controller='GICtrl'>
       <div class='row'>
-        <div class='col-md-4' ng-controller='TopicsCtrl'>
+        <div class='col-md-2' ng-controller='TopicsCtrl'>
+          <h3>Topics</h3>
           <ul>
             <li ng-repeat='topic in topics'>
-              <a ng-href='/algorithm/{{topic.name}}'>{{ topic.name }}</a>
+              <a ng-href='/index.html#/algorithms/{{topic.name}}'>{{ topic.name }}</a>
             </li>
           </ul>
         </div>
-        <div class='col-md-8'>
+        <div class='col-md-10'>
+          <h3>Algorithm</h3>
           <div ng-view></div>
         </div>
       </div>
@@ -21,5 +23,7 @@
     <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.4/angular-route.js'></script>
     <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.4/angular-resource.js'></script>
     <script src='app.js'></script>
+    <script src='jquery.js'></script>
+    <script src='jquery.flot.js'></script>
   </body>
 </html>
