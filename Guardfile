@@ -43,9 +43,9 @@ guard :haml, output: 'web', input: 'templates' do
 
 end
 
-guard 'livereload', input: 'web' do
-  watch(%r{^.+\.(css|js|html)$})
-end
+# guard 'livereload', input: 'web' do
+#   watch(%r{^.+\.(css|js|html)$})
+# end
 
 guard 'coffeescript', :input => 'coffee', output: 'web/js'
 guard 'coffeescript', :input => 'spec', output: 'test'
