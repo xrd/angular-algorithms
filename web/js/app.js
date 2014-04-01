@@ -92,8 +92,7 @@
         }
       };
       $scope.ss = function(msg) {
-        $scope.status = msg;
-        return console.log(msg);
+        return $scope.status = msg;
       };
       $scope.count = 10;
       $scope.timeAndPlot = function(n) {
@@ -143,18 +142,24 @@
       $scope.calculateSoE = function() {
         return console.log("Calculating sieve of eratosthenes!");
       };
+      $scope.number = function(n) {
+        return $scope.numbers[n - 1];
+      };
       $scope.generateNumbers = function(n) {
-        var _i, _results;
+        var i, _i, _results;
         $scope.numbers = [];
-        _results = [];
-        for (n = _i = 2; 2 <= n ? _i <= n : _i >= n; n = 2 <= n ? ++_i : --_i) {
-          _results.push($scope.numbers.push({
-            prime: false
-          }));
+        if (n > 2) {
+          _results = [];
+          for (i = _i = 2; 2 <= n ? _i <= n : _i >= n; i = 2 <= n ? ++_i : --_i) {
+            _results.push($scope.numbers.push({
+              prime: false
+            }));
+          }
+          return _results;
         }
-        return _results;
       };
       return $scope.start = function() {
+        $scope.generateNumbers();
         $scope.p = 2;
         return $scope.calculateSoE();
       };

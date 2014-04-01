@@ -55,7 +55,7 @@
 
         $scope.ss = (msg) ->
                 $scope.status = msg
-                console.log msg
+                # console.log msg
 
         $scope.count = 10
 
@@ -104,12 +104,18 @@
                 console.log "Calculating sieve of eratosthenes!"
                 
 
+        $scope.number  = (n) ->
+                $scope.numbers[n-1]
+                
         $scope.generateNumbers = (n) ->
                 $scope.numbers = []
-                for n in [2..n]
-                        $scope.numbers.push { prime: false }
+                if n > 2
+                        for i in [2..n]
+                                $scope.numbers.push { prime: false }
+                                
 
         $scope.start = () ->
+                $scope.generateNumbers()
                 $scope.p = 2
                 $scope.calculateSoE()
                 

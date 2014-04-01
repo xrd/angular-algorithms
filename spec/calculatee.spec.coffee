@@ -29,7 +29,8 @@ describe "Test calculation of e", () ->
                         scope.data = []
                         scope.data[0] = {}
                         scope.data[0].data = []
-                        count = 1000
+                        count = 100
+                        
                         for num in [0...count/10]
                                 scope.time( num*10 )
                         expect( scope.data[0].data.length ).toEqual( count/10 )

@@ -34,7 +34,7 @@
         scope.data = [];
         scope.data[0] = {};
         scope.data[0].data = [];
-        count = 1000;
+        count = 100;
         for (num = _i = 0, _ref = count / 10; 0 <= _ref ? _i < _ref : _i > _ref; num = 0 <= _ref ? ++_i : --_i) {
           scope.time(num * 10);
         }
