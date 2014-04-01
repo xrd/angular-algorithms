@@ -1,0 +1,8 @@
+<script src='js/eratosthenes.js'></script>
+<div class='algorithm' ng-controller='EratosthenesCtrl'>
+  <input ng-model='timeoutInterval' placeholder='Enter timeout interval'>
+  <h2>{{ p }}</h2>
+  <div id='placeholder'>
+    <span class='item' ng-repeat='n in numbers' style='border: 1px solid black; padding: 1px; margin: 1px; width: 20px; height: 20px'>{{n.prime}}</span>
+  </div>
+</div>

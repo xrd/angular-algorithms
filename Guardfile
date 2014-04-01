@@ -31,7 +31,7 @@ def add_to_json( name )
     parsed['items'][name] = { name: name }
   end
   puts "Writing out: #{parsed.inspect}"
-  File.write( TOPICS_JSON, parsed.to_json )
+  File.write( TOPICS_JSON, JSON.pretty_generate( parsed ) )
   
 end
 

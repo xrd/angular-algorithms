@@ -1,1 +1,22 @@
-{"items":{"Quicksort":{"name":"Quicksort"},"Heapsort":{"name":"Heapsort"},"CalculateE":{"name":"CalculateE"},"Eratosthenes":{"name":"Eratosthenes"},"JavaScriptStrictMode":{"name":"JavaScriptStrictMode"}}}
+{
+  "items": {
+    "Quicksort": {
+      "name": "Quicksort"
+    },
+    "Heapsort": {
+      "name": "Heapsort"
+    },
+    "CalculateE": {
+      "name": "CalculateE"
+    },
+    "Eratosthenes": {
+      "name": "Eratosthenes"
+    },
+    "JavaScriptStrictMode": {
+      "name": "JavaScriptStrictMode"
+    },
+    "PrimeCalc": {
+      "name": "PrimeCalc"
+    }
+  }
+}
