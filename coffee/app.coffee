@@ -102,7 +102,6 @@
 
         $scope.calculateSoE = () ->
                 console.log "Calculating sieve of eratosthenes!"
-                
 
         $scope.number  = (n) ->
                 $scope.numbers[n-1]
