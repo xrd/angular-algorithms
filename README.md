@@ -3,7 +3,7 @@ angular-algorithms
 
 A collection of algorithms implemented in AngularJS.
 
-Goals
+## Goals
 
 * Build algorithms in JS 
 * Expose limitations of JS when building algorithms
@@ -13,7 +13,7 @@ Goals
 * Optionally support different algorithms for a problem set to experiment and see timing
 * Verify and expose Big-O analysis 
 
-Algorithms
+## Algorithms
 
 - [ ] Calculate e
 - [ ] Sieve of Erasothenes
