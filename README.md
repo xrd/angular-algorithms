@@ -20,7 +20,18 @@ A collection of algorithms implemented in AngularJS.
 - [ ] Quick sort
 - [ ] Bubble sort
 
+### Tools you should have
+
+* Karma Runner: http://karma-runner.github.io/0.12/index.html
+* Pow/Powder: http://pow.cx
+* RVM: http://RVM.io
+* Rack
+* Ruby
+
 ### How it works
+
+* Guard file builds `topics.json` 
+* Web server
 
 ## Build your own algorithms
 
@@ -28,4 +39,8 @@ A collection of algorithms implemented in AngularJS.
 * `bundle` to install the gems
 * Run guard: `bundle exec guard` to automatically regenerate
 * Run the tests: `karma start karma.js`
-* Delete the files in 
+* Make sure all the tests pass
+* Delete the implementation files in `coffee` which define all the code for passing tests
+* Write your own implementations for the tests
+
+
