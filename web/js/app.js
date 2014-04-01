@@ -137,4 +137,28 @@
     }
   ]);
 
+  this.app.controller('EratosthenesCtrl', [
+    '$scope', '$timeout', function($scope, $timeout) {
+      $scope.timeoutInterval = 1000;
+      $scope.calculateSoE = function() {
+        return console.log("Calculating sieve of eratosthenes!");
+      };
+      $scope.generateNumbers = function(n) {
+        var _i, _results;
+        $scope.numbers = [];
+        _results = [];
+        for (n = _i = 2; 2 <= n ? _i <= n : _i >= n; n = 2 <= n ? ++_i : --_i) {
+          _results.push($scope.numbers.push({
+            prime: false
+          }));
+        }
+        return _results;
+      };
+      return $scope.start = function() {
+        $scope.p = 2;
+        return $scope.calculateSoE();
+      };
+    }
+  ]);
+
 }).call(this);

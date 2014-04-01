@@ -30,9 +30,15 @@
     });
     return describe("#time", function() {
       return it("should build timing information", function() {
-        scope.time(2);
-        expect(scope.data[0].label).toBeTruthy();
-        return expect(scope.data.length).toEqual(2);
+        var count, num, _i, _ref;
+        scope.data = [];
+        scope.data[0] = {};
+        scope.data[0].data = [];
+        count = 1000;
+        for (num = _i = 0, _ref = count / 10; 0 <= _ref ? _i < _ref : _i > _ref; num = 0 <= _ref ? ++_i : --_i) {
+          scope.time(num * 10);
+        }
+        return expect(scope.data[0].data.length).toEqual(count / 10);
       });
     });
   });

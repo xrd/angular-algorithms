@@ -1,0 +1,11 @@
+%script{ src: 'js/eratosthenes.js' }
+
+.algorithm{ 'ng-controller' => 'EratosthenesCtrl' }
+
+  %input{ 'ng-model' => 'timeoutInterval', placeholder: 'Enter timeout interval' }
+
+  %h2 {{ p }}
+  #placeholder
+    %span.item{ style: 'border: 1px solid black; padding: 1px; margin: 1px; width: 20px; height: 20px', 'ng-repeat' => 'n in numbers' } {{n.prime}}
+
+

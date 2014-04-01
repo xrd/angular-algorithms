@@ -18,8 +18,8 @@ module.exports = function(config) {
         "https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.4/angular-route.js",
         "https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.4/angular-resource.js",
         "https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.4/angular-mocks.js",
-        "web/jquery.js",
-        "web/*.js",
+        "web/js/jquery.js",
+        "web/js/*.js",
         "test/*.js"
     ],
 

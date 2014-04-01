@@ -47,5 +47,5 @@ guard 'livereload', input: 'web' do
   watch(%r{^.+\.(css|js|html)$})
 end
 
-guard 'coffeescript', :input => 'coffee', output: 'web'
+guard 'coffeescript', :input => 'coffee', output: 'web/js'
 guard 'coffeescript', :input => 'spec', output: 'test'

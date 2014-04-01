@@ -59,27 +59,26 @@
 
         $scope.count = 10
 
-        $scope.timeIterator = (n) ->
+        $scope.timeAndPlot = (n) ->
                 $scope.data = []
-                $scope.timings = []
+                $scope.data[0] = {}
+                $scope.data[0].label = "e"
+                $scope.data[0].data = []
                 $scope.ss "Starting timing"
-                for num in [1..n+1]
-                        $scope.time( num )
+                for num in [0...(n/10)]
+                        $scope.time( num*10 )
                         $scope.draw($scope.data)                      
                 $scope.ss "Starting timing"
 
         $scope.time = (n) ->
-                $scope.data = [] unless $scope.data
-                minusOne = n-1
-                $scope.ss "Timing iteraton: #{n}"
-                $scope.data[minusOne] = {}
-                start = new Date().getMilliseconds()
-                $scope.data[minusOne].label = "Timing ##{minusOne}"
-                $scope.sum( minusOne )
-                stop = new Date().getMilliseconds()
-                $scope.data[minusOne].data = []
-                $scope.data[minusOne].data.push( minusOne )
-                $scope.data[minusOne].data.push( stop - start )
+                $scope.ss "Timing iteraton: #{n+1}"
+                start = new Date().getTime()
+                $scope.ss "Start: #{start}"
+                $scope.sum( n )
+                stop = new Date().getTime()
+                $scope.ss "Stop: #{stop}"
+                the_data = [ n, ( stop - start ) ]
+                $scope.data[0].data.push the_data
 
         ]
 
@@ -94,4 +93,28 @@
 
         $scope.draw( data )
 
+
         ]
+
+@app.controller 'EratosthenesCtrl', [ '$scope', '$timeout', ($scope, $timeout) ->
+
+        $scope.timeoutInterval = 1000
+
+        $scope.calculateSoE = () ->
+                console.log "Calculating sieve of eratosthenes!"
+                
+
+        $scope.generateNumbers = (n) ->
+                $scope.numbers = []
+                for n in [2..n]
+                        $scope.numbers.push { prime: false }
+
+        $scope.start = () ->
+                $scope.p = 2
+                $scope.calculateSoE()
+                
+        ]
+                
+
+
+                

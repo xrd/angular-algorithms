@@ -24,9 +24,13 @@ describe "Test calculation of e", () ->
                         e = scope.sum( 4 )
                         expect( parseInt( e * 100 ) ).toBe( 270 )
 
-
         describe "#time", ->
                 it "should build timing information", ->
-                        scope.time( 2 )
-                        expect( scope.data[0].label ).toBeTruthy()
-                        expect( scope.data.length ).toEqual( 2 )
+                        scope.data = []
+                        scope.data[0] = {}
+                        scope.data[0].data = []
+                        count = 1000
+                        for num in [0...count/10]
+                                scope.time( num*10 )
+                        expect( scope.data[0].data.length ).toEqual( count/10 )
+                        
