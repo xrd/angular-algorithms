@@ -136,7 +136,7 @@
     }
   ]);
 
-  this.app.controller('EratosthenesCtrl', [
+  this.app.controller('PrimeCalcCtrl', [
     '$scope', '$timeout', function($scope, $timeout) {
       $scope.timeoutInterval = 1000;
       $scope.calculateSoE = function() {

@@ -1,6 +1,6 @@
 'use strict'
 
-describe "Test sieve of eratosthenes", () ->
+describe "Test prime calculation", () ->
         ctrl = undefined
         scope = undefined
         
@@ -9,7 +9,7 @@ describe "Test sieve of eratosthenes", () ->
         
         beforeEach inject ($controller, $rootScope ) ->
                 scope = $rootScope.$new()
-                ctrl = $controller( 'EratosthenesCtrl', { $scope: scope } )
+                ctrl = $controller( 'PrimeCalcCtrl', { $scope: scope } )
 
         describe "#calculateSoE", ->
         

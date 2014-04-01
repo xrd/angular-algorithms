@@ -96,7 +96,7 @@
 
         ]
 
-@app.controller 'EratosthenesCtrl', [ '$scope', '$timeout', ($scope, $timeout) ->
+@app.controller 'PrimeCalcCtrl', [ '$scope', '$timeout', ($scope, $timeout) ->
 
         $scope.timeoutInterval = 1000
 
@@ -111,7 +111,6 @@
                 if n > 2
                         for i in [2..n]
                                 $scope.numbers.push { prime: false }
-                                
 
         $scope.start = () ->
                 $scope.generateNumbers()

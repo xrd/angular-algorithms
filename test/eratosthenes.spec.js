@@ -1,6 +1,6 @@
 (function() {
   'use strict';
-  describe("Test sieve of eratosthenes", function() {
+  describe("Test prime calculation", function() {
     var ctrl, scope;
     ctrl = void 0;
     scope = void 0;
@@ -9,7 +9,7 @@
     });
     beforeEach(inject(function($controller, $rootScope) {
       scope = $rootScope.$new();
-      return ctrl = $controller('EratosthenesCtrl', {
+      return ctrl = $controller('PrimeCalcCtrl', {
         $scope: scope
       });
     }));
