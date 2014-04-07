@@ -1,4 +1,5 @@
 require 'json'
+require 'yaml'
 
 # A sample Guardfile
 # More info at https://github.com/guard/guard#readme
@@ -35,6 +36,7 @@ def add_to_json( name )
   
 end
 
+
 guard :haml, output: 'web', input: 'templates' do
   watch( %r{^.+(\.html\.haml)$} ) { |m| 
     check_for_topic( m[0] )
@@ -49,3 +51,44 @@ end
 
 guard 'coffeescript', :input => 'coffee', output: 'web/js'
 guard 'coffeescript', :input => 'spec', output: 'test'
+
+module ::Guard
+  class Yaml2Json < Guard
+    def start
+      puts "Start doing something"
+    end
+
+    def stop
+    end
+
+    def reload
+      stop
+      start
+    end
+
+    def run_all
+      true
+    end
+
+    def run_on_change(paths)
+      paths.each do |p|
+        puts "Got file: #{p}"
+        obj = YAML.load( File.read( p ) )
+        the_json = JSON.pretty_generate( obj )
+        File.open( "web/big_o.json", "w+" ) do |f|
+          f.write the_json
+        end
+        File.open( "test/big_o.js", "w+" ) do |f|
+          wo_single_quotes = the_json.gsub "'", ""
+          f.write "var BIG_O = #{wo_single_quotes};"
+        end
+      end
+      true
+    end
+  end
+end
+
+# Available options: :pidfile, :port, :executable
+guard 'yaml2json' do
+  watch(%r{^.+\.yml$})
+end

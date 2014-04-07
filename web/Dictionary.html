@@ -1,0 +1,43 @@
+<style>
+  <div class='current'>{</div>
+  background-color: green;
+  }
+</style>
+<div class='controller' ng-controller='DictCtrl' ng-init='init()'>
+  <h3>Choose the correct complexity</h3>
+  <div class='points' ng-show='attempts'>{{ successes }} / {{ attempts }}</div>
+  <div class='container'>
+    <div class='row'>
+      <div class='col-xs-1'>&nbsp;</div>
+      <div class='col-xs-1' ng-repeat='type in types'>
+        <small>{{ type.name }}</small>
+      </div>
+    </div>
+    <div class='row' ng-repeat='op in operations'>
+      <div class='col-xs-1'>
+        <small>{{ op }}</small>
+      </div>
+      <div class='col-xs-1' ng-class='{ current: selected(op,$index) }' ng-repeat='type in types'>
+        <select ng-change='answer(op,$index,$parent.$index)' ng-model='selectors[$index][$parent.$index]' ng-options='c for c in complexities'></select>
+      </div>
+    </div>
+    <div class='row'>
+      <h4 ng-show='why'>
+        Yes, you got it right.
+        The reason this is correct is:
+        <h5>{{ why }}</h5>
+      </h4>
+      {{ askWhys | json }}
+      <div class='item' ng-show='askWhys'>
+        You did not answer correctly. Why is this not {{incorrectWhy}}
+        <div class='answer' ng-show='correct'>
+          <div class='correct' ng-show='"yes" == correct'>You answered correctly!</div>
+          <div class='correct' ng-show='"no" == correct'>Incorrect answer. Care to try again.</div>
+        </div>
+        <div class='item alert alert-success' ng-click='answerWhy(w)' ng-repeat='w in askWhys'>
+          {{ w }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

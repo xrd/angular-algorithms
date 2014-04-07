@@ -1,8 +1,16 @@
-<script src='js/eratosthenes.js'></script>
-<div class='algorithm' ng-controller='EratosthenesCtrl'>
-  <input ng-model='timeoutInterval' placeholder='Enter timeout interval'>
-  <h2>{{ p }}</h2>
-  <div id='placeholder'>
-    <span class='item' ng-repeat='n in numbers' style='border: 1px solid black; padding: 1px; margin: 1px; width: 20px; height: 20px'>{{n.prime}}</span>
+<div class='algorithm' ng-controller='PrimeCalcCtrl'>
+  <div class='item'>
+    Algorithm:
+    <select ng-model='algorithm' ng-options='c for c in algorithms'></select>
   </div>
+  <div class='item'>
+    Bounds:
+    <input ng-model='bounds' placeholder='Enter boundary for calculation'>
+  </div>
+  <div class='item'>
+    <a class='btn btn-default' ng-click='calculate()'>Calculate primes to {{ bounds }}</a>
+    <a class='btn btn-default' ng-click='runAll()'>Calculate primes using all algorithms</a>
+  </div>
+  <div class='primes' ng-show='primes'>Found primes: {{ primes | json }}</div>
+  <div id='placeholder'></div>
 </div>

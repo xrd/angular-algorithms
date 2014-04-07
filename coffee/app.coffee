@@ -1,6 +1,6 @@
-'use strict'
+# 'use strict'
 
-@app = angular.module 'gi', [ 'ngResource', 'ngRoute' ]
+@app = angular.module 'gi', [ 'ngResource', 'ngRoute', 'ngAnimate' ]
 
 @app.config [ '$routeProvider', '$locationProvider', ( $routeProvider, $locationProvider ) ->
         $routeProvider.when '/algorithms/:item',
@@ -15,13 +15,16 @@
         ]
 
 @app.controller 'GICtrl', [ '$scope', ($scope) ->
-        $scope.options = {
-                lines: { show: true },
-                points: { show: true },
-                xaxis: { tickDecimals: 0, tickSize: 1 }
+
+        $scope.draw = (data, xTick=10 ) ->
+
+                $scope.options = {
+                        lines: { show: true },
+                        points: { show: true },
+                        xaxis: { tickDecimals: 1, tickSize: xTick }
+                        yaxis: { tickDecimals: 1 }
                 }
 
-        $scope.draw = (data) ->
                 placeholder = $("#placeholder")
                 $.plot placeholder, data, $scope.options
         ]
@@ -34,93 +37,87 @@
                         $scope.topics.push response.items[key] if key and value
         ]
 
-@app.controller 'CalculateECtrl', [ '$scope', ($scope) ->
-
-        $scope.summer = $scope.sum
-
-        $scope.factorial = (n) ->
-                #console.log "Inside factorial for #{n}"
-                if 0 == n
-                        1
-                else
-                        n * $scope.factorial( n - 1 )
-
-        $scope.sum = ( n ) ->
-                if 0 == n
-                        1
-                else
-                        fact = $scope.factorial( n )
-                        # console.log "Fact for #{n-1}: #{fact}"
-                        $scope.sum( n - 1 ) + ( 1.0 / fact )
-
-        $scope.ss = (msg) ->
-                $scope.status = msg
-                # console.log msg
-
-        $scope.count = 10
-
-        $scope.timeAndPlot = (n) ->
-                $scope.data = []
-                $scope.data[0] = {}
-                $scope.data[0].label = "e"
-                $scope.data[0].data = []
-                $scope.ss "Starting timing"
-                for num in [0...(n/10)]
-                        $scope.time( num*10 )
-                        $scope.draw($scope.data)                      
-                $scope.ss "Starting timing"
-
-        $scope.time = (n) ->
-                $scope.ss "Timing iteraton: #{n+1}"
-                start = new Date().getTime()
-                $scope.ss "Start: #{start}"
-                $scope.sum( n )
-                stop = new Date().getTime()
-                $scope.ss "Stop: #{stop}"
-                the_data = [ n, ( stop - start ) ]
-                $scope.data[0].data.push the_data
-
-        ]
-
-@app.controller 'HeapsortCtrl', [ '$scope', ($scope) ->
-
-        $scope.placeholder = $("#placeholder");
-                        
-        data = [ {
-                "label": "Europe (EU27)",
-                "data": [[1999, 3.0], [2000, 3.9], [2001, 2.0], [2002, 1.2], [2003, 1.3], [2004, 2.5], [2005, 2.0], [2006, 3.1], [2007, 2.9], [2008, 0.9]]
-                } ]
-
-        $scope.draw( data )
-
-
-        ]
-
 @app.controller 'PrimeCalcCtrl', [ '$scope', '$timeout', ($scope, $timeout) ->
 
-        $scope.timeoutInterval = 1000
+        $scope.algorithm = undefined
+        $scope.algorithms = [ 'SieveOfE', 'Other', 'Another' ]
+        $scope.bounds = 102
+        $scope.p = undefined
 
-        $scope.calculateSoE = () ->
-                console.log "Calculating sieve of eratosthenes!"
+        $scope.stepInt = 50
 
-        $scope.number  = (n) ->
-                $scope.numbers[n-1]
-                
-        $scope.generateNumbers = (n) ->
+        $scope.clearPrimes = () ->
+                $scope.primes = []
+
+        $scope.clearPrimes()
+        
+        $scope.runAll = () ->
+                for a in $scope.algorithms
+                        $scope.clearPrimes()
+                        $scope[a]()
+
+        $scope.setCallee = () ->
+                try
+                        throw new Error( "Getting stack trace" )
+                catch e
+                        # Break up the call stack and grab the third one
+                        # since first is the line "Getting stack trace"
+                        # and second is the setCallee method
+                        stack = if e.stack then  e.stack else e.stacktrace
+                        lines = stack.split( /\n/ )
+                        without_ln = lines[2].split( /\(/ )[0]
+                        func = without_ln.split( /\./ )[2]
+                        $scope.callee = func
+
+        markC = (n) -> $scope.numbers[n].composite = true 
+        isCorP = (i) -> $scope.numbers[i].composite or $scope.numbers[i].prime
+        
+        $scope.markThePs = ( n=2 ) ->
+                if ($scope.p * n) <= $scope.bounds
+                        markC( $scope.p * n )
+                        $timeout ( () -> $scope.markThePs(n+1) ), $scope.stepInt
+                else
+                        keepGoing = false
+                        for i in [$scope.p+1...$scope.bounds]
+                                if not isCorP( i )
+                                        keepGoing = true
+                                        $timeout ( () ->
+                                                $scope.primes.push i
+                                                $scope.numbers[i].prime = true
+                                                $scope.p = i
+                                                $timeout $scope.markThePs, $scope.stepInt
+                                                ), $scope.stepInt
+                                        break
+                        $scope.done = true unless keepGoing
+
+        $scope.SieveOfE = () ->
+                $scope.primes = []
+                $scope.numbers[0].prime = true
+                $scope.numbers[1].prime = true
+                $scope.numbers[2].prime = true
+                $scope.p = 2
+                $scope.markThePs()
+
+        $scope.generateNumbers = (bounds) ->
+                $scope.bounds = bounds
                 $scope.numbers = []
-                if n > 2
-                        for i in [2..n]
-                                $scope.numbers.push { prime: false }
+                if bounds > 2
+                        for i in [0..bounds]
+                                $scope.numbers.push { prime: false, number: i }
 
         $scope.start = () ->
-                $scope.generateNumbers()
-                $scope.p = 2
-                $scope.calculateSoE()
-                
+                $scope.primes = []
+                $scope.generateNumbers($scope.bounds)
+                $scope.calculate()
+
+        $scope.calculate = () ->
+                $scope.algorithm = $scope.algorithms[0] unless $scope.algorithm
+                $scope[$scope.algorithm]()
+                                                
         ]
                 
 
 @app.controller 'StrictModeCtrl', [ '$scope', ($scope) ->
 
         ]
-        
+

@@ -1,0 +1,19 @@
+.algorithm{ 'ng-controller' => 'PrimeCalcCtrl', 'ng-init' => 'generateNumbers(100)' }
+
+  .item
+    %h4 Algorithm Complexity: O(n log log n)
+    Pseudo polynomial
+  .item
+    Step duration:
+    %input{ 'ng-model' => 'stepInt', placeholder: 'Enter step interval' }
+  .item
+    %a.btn.btn-default{ 'ng-click' => 'SieveOfE()' } Calculate using Sieve of Eratosthenes
+  .item{ 'ng-show' => 'p' }
+    %h3{ 'ng-show' => 'p' }  P: {{ p }}
+    .item{ 'ng-show' => 'done' } Primes {{ primes }}
+  #placeholder{ 'style' => 'width: 700px;', 'ng-show' => 'p' }
+    %span.number{ 'ng-repeat' => 'n in numbers', 'ng-if' => '0 != $index' } 
+      .holder{ 'ng-class' => '{ composite : n.composite, prime : n.prime }' }
+        {{n.number}}
+        .tiny {{n.prime&&'prime'||n.composite&&'composite'||'&nbsp;'}}
+

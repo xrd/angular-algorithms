@@ -1,0 +1,44 @@
+.number {
+    display: inline-block;
+    border: 1px solid black; 
+    padding: 1px; 
+    margin: 1px; 
+    width: 62px; 
+    text-align: center;
+}
+
+.composite {
+    background-color: #8df;
+}
+
+.tiny {
+    font-size: 0.6em;
+}
+
+.holder {
+    display: inline-block;
+}
+
+.prime {
+    background-color: #dfa;
+}
+
+@-webkit-keyframes explode {
+    10% {
+        -webkit-transform: scale(1,1); 
+    }
+
+    30% {
+        -webkit-transform: scale(3,3); 
+
+    }
+
+    100% {
+        -webkit-transform: scale(1,1); 
+    }
+}
+
+.prime-add {
+    -webkit-animation: explode 3s;
+}
+

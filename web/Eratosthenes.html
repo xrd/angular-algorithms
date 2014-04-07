@@ -1,8 +1,25 @@
-<script src='js/eratosthenes.js'></script>
-<div class='algorithm' ng-controller='EratosthenesCtrl'>
-  <input ng-model='timeoutInterval' placeholder='Enter timeout interval'>
-  <h2>{{ p }}</h2>
-  <div id='placeholder'>
-    <span class='item' ng-repeat='n in numbers' style='border: 1px solid black; padding: 1px; margin: 1px; width: 20px; height: 20px'>{{n.prime}}</span>
+<div class='algorithm' ng-controller='PrimeCalcCtrl' ng-init='generateNumbers(100)'>
+  <div class='item'>
+    <h4>Algorithm Complexity: O(n log log n)</h4>
+    Pseudo polynomial
+  </div>
+  <div class='item'>
+    Step duration:
+    <input ng-model='stepInt' placeholder='Enter step interval'>
+  </div>
+  <div class='item'>
+    <a class='btn btn-default' ng-click='SieveOfE()'>Calculate using Sieve of Eratosthenes</a>
+  </div>
+  <div class='item' ng-show='p'>
+    <h3 ng-show='p'>P: {{ p }}</h3>
+    <div class='item' ng-show='done'>Primes {{ primes }}</div>
+  </div>
+  <div id='placeholder' ng-show='p' style='width: 700px;'>
+    <span class='number' ng-if='0 != $index' ng-repeat='n in numbers'>
+      <div class='holder' ng-class='{ composite : n.composite, prime : n.prime }'>
+        {{n.number}}
+        <div class='tiny'>{{n.prime&&'prime'||n.composite&&'composite'||'&nbsp;'}}</div>
+      </div>
+    </span>
   </div>
 </div>

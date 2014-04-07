@@ -1,0 +1,196 @@
+var BIG_O = [
+  {
+    "name": " constant time                            ",
+    "complexity class": "                  ",
+    "running time (T(n))": " O(1)                   ",
+    "Examples": " 10                 ",
+    "Example Algorithms": [
+      " Determining if an integer (represented in binary) is even or odd                    "
+    ]
+  },
+  {
+    "name": " inverse Ackermanntime                    ",
+    "complexity class": "                  ",
+    "running time (T(n))": " O(α(n))               ",
+    "Examples": "                    ",
+    "Example Algorithms": [
+      " Amortized time per operation using a disjoint set                                   "
+    ]
+  },
+  {
+    "name": " iterated logarithmictime                 ",
+    "complexity class": "                  ",
+    "running time (T(n))": " O(log* n)              ",
+    "Examples": "                    ",
+    "Example Algorithms": [
+      " Distributed coloring of cycles                                                      "
+    ]
+  },
+  {
+    "name": " log-logarithmic                          ",
+    "complexity class": "                  ",
+    "running time (T(n))": " O(log log n)           ",
+    "Examples": "                    ",
+    "Example Algorithms": [
+      " Amortized time per operation using a bounded priority queue[2]                      "
+    ]
+  },
+  {
+    "name": " logarithmic time                         ",
+    "complexity class": " DLOGTIME         ",
+    "running time (T(n))": " O(log n)               ",
+    "Examples": " log n, log(n2)     ",
+    "Example Algorithms": [
+      " Binary search                                                                       "
+    ]
+  },
+  {
+    "name": " polylogarithmic time                     ",
+    "complexity class": "                  ",
+    "running time (T(n))": " poly(log n)            ",
+    "Examples": " (log n)2           ",
+    "Example Algorithms": [
+      "                                                                                     "
+    ]
+  },
+  {
+    "name": " fractional power                         ",
+    "complexity class": "                  ",
+    "running time (T(n))": " O(nc) where 0 < c < 1  ",
+    "Examples": " n1/2, n2/3         ",
+    "Example Algorithms": [
+      " Searching in a kd-tree                                                              "
+    ]
+  },
+  {
+    "name": " linear time                              ",
+    "complexity class": "                  ",
+    "running time (T(n))": " O(n)                   ",
+    "Examples": " n                  ",
+    "Example Algorithms": [
+      " Finding the smallest item in an unsorted array                                      "
+    ]
+  },
+  {
+    "name": " \"n log star n\" time                      ",
+    "complexity class": "                  ",
+    "running time (T(n))": " O(n log* n)            ",
+    "Examples": "                    ",
+    "Example Algorithms": [
+      " Seidels polygon triangulation algorithm.                                           "
+    ]
+  },
+  {
+    "name": " linearithmic time                        ",
+    "complexity class": "                  ",
+    "running time (T(n))": " O(n log n)             ",
+    "Examples": " n log n, log n!    ",
+    "Example Algorithms": [
+      " Fastest possible comparison sort                                                    "
+    ]
+  },
+  {
+    "name": " quadratic time                           ",
+    "complexity class": "                  ",
+    "running time (T(n))": " O(n2)                  ",
+    "Examples": " n2                 ",
+    "Example Algorithms": [
+      " Bubble sort",
+      "Insertion sort",
+      "Direct convolution                                     "
+    ]
+  },
+  {
+    "name": " cubic time                               ",
+    "complexity class": "                  ",
+    "running time (T(n))": " O(n3)                  ",
+    "Examples": " n3                 ",
+    "Example Algorithms": [
+      " Naive multiplication of two n×n matrices. ",
+      "Calculating partial  correlation.         "
+    ]
+  },
+  {
+    "name": " polynomial time                          ",
+    "complexity class": " P                ",
+    "running time (T(n))": " 2O(log n) = poly(n)    ",
+    "Examples": " n, n log n, n10    ",
+    "Example Algorithms": [
+      "Karmarkars algorithm for linear programming",
+      "AKS primality test                    "
+    ]
+  },
+  {
+    "name": " quasi-polynomial time                    ",
+    "complexity class": " QP               ",
+    "running time (T(n))": " 2poly(log n)           ",
+    "Examples": " nlog log n, nlog n ",
+    "Example Algorithms": [
+      " Best-known O(log2 n)-approximation algorithm for the directed Steiner tree problem. "
+    ]
+  },
+  {
+    "name": " sub-exponential time",
+    "complexity class": null,
+    "running time (T(n))": null,
+    "Examples": null,
+    "Example Algorithms": null
+  },
+  {
+    "name": " SUBEXP           ",
+    "complexity class": " O(2nε) for all ε > 0 ",
+    "running time (T(n))": " O(2log nlog log n) ",
+    "Examples": " Assuming complexity theoretic conjectures, BPP is contained in SUBEXP.[3]           ",
+    "Example Algorithms": null
+  },
+  {
+    "name": " sub-exponential time",
+    "complexity class": null,
+    "running time (T(n))": null,
+    "Examples": null,
+    "Example Algorithms": null
+  },
+  {
+    "name": "                  ",
+    "complexity class": " 2o(n)                  ",
+    "running time (T(n))": " 2n1/3              ",
+    "Examples": " Best-known algorithm for integer factorization and graph isomorphism                ",
+    "Example Algorithms": null
+  },
+  {
+    "name": " exponential time                         ",
+    "complexity class": " E                ",
+    "running time (T(n))": " 2O(n)                  ",
+    "Examples": " 1.1n, 10n          ",
+    "Example Algorithms": [
+      " Solving the traveling salesman problem using dynamic programming                    "
+    ]
+  },
+  {
+    "name": " factorial time                           ",
+    "complexity class": "                  ",
+    "running time (T(n))": " O(n!)                  ",
+    "Examples": " n!                 ",
+    "Example Algorithms": [
+      " Solving the traveling salesman problem via brute-force search                       "
+    ]
+  },
+  {
+    "name": " exponential time                         ",
+    "complexity class": " EXPTIME          ",
+    "running time (T(n))": " 2poly(n)               ",
+    "Examples": " 2n, 2n2            ",
+    "Example Algorithms": [
+      "                                                                                     "
+    ]
+  },
+  {
+    "name": " double exponential time                  ",
+    "complexity class": " 2-EXPTIME        ",
+    "running time (T(n))": " 22poly(n)              ",
+    "Examples": " 22n                ",
+    "Example Algorithms": [
+      " Deciding the truth of a given statement in Presburger arithmetic                    "
+    ]
+  }
+];

@@ -1,0 +1,40 @@
+%style
+  .current {
+  background-color: green;
+  }
+
+.controller{ 'ng-controller' => 'DictCtrl', 'ng-init' => 'init()' }
+
+  %h3 Choose the correct complexity
+
+  .points{ 'ng-show' => 'attempts' } {{ successes }} / {{ attempts }}
+
+  .container
+    .row
+      .col-xs-1 &nbsp;
+      .col-xs-1{ 'ng-repeat' => 'type in types' } 
+        %small {{ type.name }}
+
+    .row{ 'ng-repeat' => 'op in operations' }
+      .col-xs-1
+        %small {{ op }}
+      .col-xs-1{ 'ng-repeat' => 'type in types', 'ng-class' => '{ current: selected(op,$index) }' }
+        %select{ 'ng-options' => 'c for c in complexities', 'ng-change' => 'answer(op,$index,$parent.$index)', 'ng-model' => 'selectors[$index][$parent.$index]' }
+
+    .row
+      
+      %h4{ 'ng-show' => 'why' } 
+        Yes, you got it right. 
+        The reason this is correct is:
+        %h5 {{ why }}
+
+      {{ askWhys | json }}
+        
+      .item{ 'ng-show' => 'askWhys' }
+        You did not answer correctly. Why is this not {{incorrectWhy}}
+        .answer{ 'ng-show' => 'correct' } 
+          .correct{ 'ng-show' => '"yes" == correct' } You answered correctly!
+          .correct{ 'ng-show' => '"no" == correct' } Incorrect answer. Care to try again.
+        .item.alert.alert-success{ 'ng-repeat' => 'w in askWhys', 'ng-click' => 'answerWhy(w)' }
+          {{ w }}
+

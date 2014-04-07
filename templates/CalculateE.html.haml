@@ -1,8 +1,6 @@
 .algorithm{ 'ng-controller' => 'CalculateECtrl' }
 
-  %button.btn{ 'ng-click' => 'timeAndPlot(count)' } Time {{count}}
+  %button.btn{ 'ng-click' => 'timeAndPlot(count)' } Time Calculation
   %input{ 'ng-model' => 'count', placeholder: 'Enter the count to time' }
   #placeholder{ "style" => "width:600px;height:300px;" }
 
-  .item{ 'ng-repeat' => 'item in data[0].data' } {{ item[0] }}: timed at {{item[1]}}
-  

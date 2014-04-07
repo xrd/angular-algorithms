@@ -1,11 +1,20 @@
-%script{ src: 'js/eratosthenes.js' }
+.algorithm{ 'ng-controller' => 'PrimeCalcCtrl' }
 
-.algorithm{ 'ng-controller' => 'EratosthenesCtrl' }
+  .item 
+    Algorithm: 
+    %select{ 'ng-options' => 'c for c in algorithms', 'ng-model' => 'algorithm' }
+  .item
+    Bounds:
+    %input{ 'ng-model' => 'bounds', placeholder: 'Enter boundary for calculation' }
+  .item
+    
+    %a.btn.btn-default{ 'ng-click' => 'calculate()' } Calculate primes to {{ bounds }}
+    %a.btn.btn-default{ 'ng-click' => 'runAll()' } Calculate primes using all algorithms
 
-  %input{ 'ng-model' => 'timeoutInterval', placeholder: 'Enter timeout interval' }
+  .primes{ 'ng-show' => 'primes' } Found primes: {{ primes | json }}
 
-  %h2 {{ p }}
   #placeholder
-    %span.item{ style: 'border: 1px solid black; padding: 1px; margin: 1px; width: 20px; height: 20px', 'ng-repeat' => 'n in numbers' } {{n.prime}}
+
+  
 
 

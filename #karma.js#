@@ -13,19 +13,9 @@ module.exports = function(config) {
     // list of files / patterns to load in the browser
     files: [
         "https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.4/angular.js",
-        "https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.4/angular-route.js",
-        "https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.4/angular-resource.js",
-        "https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.4/angular-mocks.js",
-        "https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.4/angular-animate.js",
-        "web/js/jquery.js",
-        "test/big_o.js",
-        "coffee/*.coffee",
-        "spec/*.coffee"
-    ],
-
-    // list of files to exclude
-    exclude: [
-      
+        "https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"
+        "e.js",
+        "e.spec.js",
     ],
 
     // test results reporter to use
