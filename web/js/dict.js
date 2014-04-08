@@ -105,31 +105,31 @@
           operations: {
             'search(L,k)': {
               c: 'O(n)',
-              why: '1231232312'
+              why: 'Worst case you need to search all the items in the list'
             },
             'insert(L,x)': {
               c: 'O(1)',
-              why: 'ok212312'
+              why: 'Insertion requires nothing more than connecting the head pointer to the new item'
             },
             'delete(K,x)': {
               c: 'O(n)',
-              why: 'um...123123'
+              why: 'To find the item for deletion you might have to search the entire list'
             },
             'successor(L,x)': {
               c: 'O(n)',
-              why: 'sdas 123123123'
+              why: 'To find a successor you might have to search the entire list'
             },
             'predecessor(L,x)': {
               c: ' O(n)',
-              why: 'sdasd 1231312'
+              why: 'To find a predecessor you might have to search the entire list.'
             },
             'min(L)': {
               c: 'O(n)',
-              why: 'asdas 12312 d'
+              why: 'There is no order so you need to search the entire list in worst case'
             },
             'max(L)': {
               c: 'O(n)',
-              why: 'asdads 12312312'
+              why: 'No order here, so you might need to search the entire list'
             }
           }
         }, {
@@ -137,31 +137,31 @@
           operations: {
             'search(L,k)': {
               c: 'O(n)',
-              why: 'hi there123 23131 2313'
+              why: 'Not a sorted list, so worst case could require going over entire list'
             },
             'insert(L,x)': {
               c: 'O(1)',
-              why: 'ok 123123 13'
+              why: 'No need to sort, so insertion just requires adjusting two pointers on the new item'
             },
             'delete(K,x)': {
               c: 'O(1)',
-              why: 'um...12313345345e'
+              why: 'We are given pointer to the item, so deletion just means adjusting the two pointers which previously pointed to it'
             },
             'successor(L,x)': {
               c: 'O(n)',
-              why: 'sdas 234234 '
+              why: 'Since it is unsorted we could in worst case search everything'
             },
             'predecessor(L,x)': {
               c: ' O(n)',
-              why: 'sdasd 32423 4 23'
+              why: 'Unsorted, might need to search everything'
             },
             'min(L)': {
               c: 'O(n)',
-              why: 'asdasd 234 234 234 '
+              why: 'Unsorted means linear search in worst case'
             },
             'max(L)': {
               c: 'O(n)',
-              why: 'asdads 234 234 234 234 '
+              why: 'No sorting means this is linear search'
             }
           }
         }, {
@@ -169,31 +169,31 @@
           operations: {
             'search(L,k)': {
               c: 'O(n)',
-              why: 'hi theredfsdfs '
+              why: 'Even though sorted, could have to search all items'
             },
             'insert(L,x)': {
               c: 'O(n)',
-              why: 'oksdf fsd dsf sdf'
+              why: 'Insertion in worst case could require searching to the end'
             },
             'delete(K,x)': {
               c: 'O(n)',
-              why: 'um...s dfsdf sdf'
+              why: 'Need to get predecessor after deletion which requires linear time'
             },
             'successor(L,x)': {
               c: 'O(1)',
-              why: 'sdass dfsdf sdf '
+              why: 'If we have pointer to this item, getting successor is easy'
             },
             'predecessor(L,x)': {
               c: ' O(n)',
-              why: 'sdasd sfsdfsdfsdf'
+              why: 'Predecessor retrieval requires linear time'
             },
             'min(L)': {
               c: 'O(1)',
-              why: 'asdasd sdfsdf'
+              why: 'Sorted lists mean we can start at the head to get the min'
             },
             'max(L)': {
               c: 'O(1)',
-              why: 'asdads s dfsdfsdf'
+              why: 'Sorted lists mean we can start at the tail to get the max'
             }
           }
         }, {
@@ -201,31 +201,31 @@
           operations: {
             'search(L,k)': {
               c: 'O(n)',
-              why: 'hi there ad q3da d'
+              why: 'Searching can require worst case linear time even when sorted'
             },
             'insert(L,x)': {
               c: 'O(n)',
-              why: 'ok2344 234 234'
+              why: 'Insertion can require linear worst case time'
             },
             'delete(K,x)': {
               c: 'O(1)',
-              why: 'um...dfgr56gf'
+              why: 'If we have pointer to the item, we can just adjust pred and succ pointers'
             },
             'successor(L,x)': {
               c: 'O(1)',
-              why: 'sdas f45dfdfg'
+              why: 'If we have pointer to the item, succ is just grabbing a pointer'
             },
             'predecessor(L,x)': {
               c: ' O(1)',
-              why: 'sdasddgf 456 gdg'
+              why: 'Double linked lists have both pred and succ, so if we have the item, we have pred'
             },
             'min(L)': {
               c: 'O(1)',
-              why: 'asdasd fg3fdgdfg'
+              why: 'Head gives us the min'
             },
             'max(L)': {
               c: 'O(1)',
-              why: 'asdads dfg34tdfg'
+              why: 'Tail gives us the max'
             }
           }
         }

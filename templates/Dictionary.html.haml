@@ -7,7 +7,7 @@
 
   %h3 Choose the correct complexity
 
-  .points{ 'ng-show' => 'attempts' } {{ successes }} / {{ attempts }}
+  .points{ 'ng-show' => 'attempts' } Scoring: {{ successes }} correct out of {{ attempts }} attempts
 
   .container
     .row
@@ -34,7 +34,7 @@
           .correct{ 'ng-show' => '"no" == correct' } Incorrect answer. Care to try again.
 
         .item{ 'ng-show' => 'askWhys' }
-          Incorrect. Why is this {{correctAnswer}}
+          Incorrect. Why is this {{correctAnswer}}?
           .item.alert.alert-success{ 'ng-repeat' => 'w in askWhys', 'ng-click' => 'answerWhy(w)' }
             {{ w }}
 
