@@ -1,5 +1,6 @@
 @app.controller 'DictCtrl', [ '$scope', '$timeout', ($scope, $timeout) ->
 
+        $scope.stps = []
         $scope.attempts = 0
         $scope.successes = 0
         $scope.selector = undefined
@@ -25,8 +26,12 @@
                         $scope.askWhy( why, c2 )
 
         $scope.noteCorrect = (text) ->
+                for t in $scope.stps
+                        $timeout.cancel( i )
+                        console.log "Canceling prior timeout"
+                $scope.stps = []
                 $scope.why = text
-                $timeout ( () -> $scope.why = undefined ), 5000
+                $scope.stps.push( $timeout ( () -> $scope.why = undefined ), 5000 )
 
         $scope.selected = (op,index) ->
                 $scope.operator == op and $scope.index == index
@@ -48,23 +53,26 @@
                 uniqueWhys = {}
                 $scope.askWhys = []
                 for i in [0..3]
-                        uniqueWhys[i] = $scope.whys[parseInt(Math.random()*$scope.whys.length)]
-                uniqueWhys.correct = correctWhy
+                        uniqueWhys[$scope.whys[parseInt(Math.random()*$scope.whys.length)]] = "random"
+                uniqueWhys[correctWhy] = "correct"
                 for k in Object.keys uniqueWhys
-                        $scope.askWhys.push uniqueWhys[k]
+                        # console.log "Getting sample why: #{uniqueWhys[k]}/ #{k}"
+                        $scope.askWhys.push k
                 $scope.askWhys = shuffleArray $scope.askWhys
+                $scope.correctWhy = correctWhy
                 $scope.correctAnswer = correctAnswer
 
         $scope.answerWhy = (answer) ->
-                console.log "Answer: #{answer}"
+                console.log "Answer: #{answer}/ #{$scope.correctWhy}"
                 $scope.correct = undefined
+                $scope.attempts += 1
                 if $scope.correctWhy == answer
+                        $scope.successes += 1
                         $scope.askWhys = []
                         $scope.correct = "yes"
                         $timeout ( () -> $scope.correct = undefined; $scope.askWhys = [] ), 5000
                 else
                         $scope.correct = "no"
-                
 
         $scope.complexities = [
                 "O(1)"

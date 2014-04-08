@@ -26,6 +26,12 @@
     },
     "Dictionary": {
       "name": "Dictionary"
+    },
+    "FowardErrorCorrection": {
+      "name": "FowardErrorCorrection"
+    },
+    "ShortestPath": {
+      "name": "ShortestPath"
     }
   }
 }

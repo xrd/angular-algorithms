@@ -4,6 +4,7 @@
   }
 </style>
 <div class='controller' ng-controller='DictCtrl' ng-init='init()'>
+  <h2>Reasoning about dictionary implementations</h2>
   <h3>Choose the correct complexity</h3>
   <div class='points' ng-show='attempts'>Scoring: {{ successes }} correct out of {{ attempts }} attempts</div>
   <div class='container'>
@@ -34,8 +35,10 @@
         </div>
         <div class='item' ng-show='askWhys'>
           Incorrect. Why is this {{correctAnswer}}?
-          <div class='item alert alert-success' ng-click='answerWhy(w)' ng-repeat='w in askWhys'>
-            {{ w }}
+          <div class='item' ng-repeat='w in askWhys'>
+            <button class='btn btn-large' ng-click='answerWhy(w)'>
+              {{ w }}
+            </button>
           </div>
         </div>
       </div>

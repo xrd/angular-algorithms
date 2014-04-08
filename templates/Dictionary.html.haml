@@ -5,6 +5,8 @@
 
 .controller{ 'ng-controller' => 'DictCtrl', 'ng-init' => 'init()' }
 
+  %h2 Reasoning about dictionary implementations
+
   %h3 Choose the correct complexity
 
   .points{ 'ng-show' => 'attempts' } Scoring: {{ successes }} correct out of {{ attempts }} attempts
@@ -35,6 +37,8 @@
 
         .item{ 'ng-show' => 'askWhys' }
           Incorrect. Why is this {{correctAnswer}}?
-          .item.alert.alert-success{ 'ng-repeat' => 'w in askWhys', 'ng-click' => 'answerWhy(w)' }
-            {{ w }}
+          
+          .item{ 'ng-repeat' => 'w in askWhys' }
+            %button.btn.btn-large{ 'ng-click' => 'answerWhy(w)' }
+              {{ w }}
 

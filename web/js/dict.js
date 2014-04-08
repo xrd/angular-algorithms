@@ -2,6 +2,7 @@
   this.app.controller('DictCtrl', [
     '$scope', '$timeout', function($scope, $timeout) {
       var i, shuffleArray, _i;
+      $scope.stps = [];
       $scope.attempts = 0;
       $scope.successes = 0;
       $scope.selector = void 0;
@@ -27,10 +28,18 @@
         }
       };
       $scope.noteCorrect = function(text) {
+        var t, _j, _len, _ref;
+        _ref = $scope.stps;
+        for (_j = 0, _len = _ref.length; _j < _len; _j++) {
+          t = _ref[_j];
+          $timeout.cancel(i);
+          console.log("Canceling prior timeout");
+        }
+        $scope.stps = [];
         $scope.why = text;
-        return $timeout((function() {
+        return $scope.stps.push($timeout((function() {
           return $scope.why = void 0;
-        }), 5000);
+        }), 5000));
       };
       $scope.selected = function(op, index) {
         return $scope.operator === op && $scope.index === index;
@@ -51,21 +60,24 @@
         uniqueWhys = {};
         $scope.askWhys = [];
         for (i = _j = 0; _j <= 3; i = ++_j) {
-          uniqueWhys[i] = $scope.whys[parseInt(Math.random() * $scope.whys.length)];
+          uniqueWhys[$scope.whys[parseInt(Math.random() * $scope.whys.length)]] = "random";
         }
-        uniqueWhys.correct = correctWhy;
+        uniqueWhys[correctWhy] = "correct";
         _ref = Object.keys(uniqueWhys);
         for (_k = 0, _len = _ref.length; _k < _len; _k++) {
           k = _ref[_k];
-          $scope.askWhys.push(uniqueWhys[k]);
+          $scope.askWhys.push(k);
         }
         $scope.askWhys = shuffleArray($scope.askWhys);
+        $scope.correctWhy = correctWhy;
         return $scope.correctAnswer = correctAnswer;
       };
       $scope.answerWhy = function(answer) {
-        console.log("Answer: " + answer);
+        console.log("Answer: " + answer + "/ " + $scope.correctWhy);
         $scope.correct = void 0;
+        $scope.attempts += 1;
         if ($scope.correctWhy === answer) {
+          $scope.successes += 1;
           $scope.askWhys = [];
           $scope.correct = "yes";
           return $timeout((function() {
