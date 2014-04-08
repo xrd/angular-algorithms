@@ -10,7 +10,7 @@
           %h3 Topics
           %ul
             %li{ 'ng-repeat' => 'topic in topics' } 
-              %a{ 'ng-href' => "/index.html#/algorithms/{{topic.name}}" } {{ topic.name }}
+              %a{ 'ng-href' => "index.html#algorithms/{{topic.name}}" } {{ topic.name }}
         .col-md-10
           %h3 Algorithm
           .label{ 'ng-show' => 'status' } {{ status }}

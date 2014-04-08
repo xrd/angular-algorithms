@@ -5,11 +5,11 @@
     '$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
       $routeProvider.when('/algorithms/:item', {
         templateUrl: function(params) {
-          return "/" + params.item + (".html?rand=" + (parseInt(10000 * Math.random())));
+          return params.item + (".html?rand=" + (parseInt(10000 * Math.random())));
         }
       });
       return $routeProvider.otherwise({
-        redirectTo: '/'
+        redirectTo: ''
       });
     }
   ]);

@@ -4,8 +4,8 @@
 
 @app.config [ '$routeProvider', '$locationProvider', ( $routeProvider, $locationProvider ) ->
         $routeProvider.when '/algorithms/:item',
-                templateUrl: (params) -> "/" + params.item + ".html?rand=#{parseInt(10000*Math.random())}",
-        $routeProvider.otherwise( redirectTo: '/' )
+                templateUrl: (params) -> params.item + ".html?rand=#{parseInt(10000*Math.random())}",
+        $routeProvider.otherwise( redirectTo: '' )
         # $locationProvider.html5Mode(true)
         ]
 
