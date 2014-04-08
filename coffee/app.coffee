@@ -10,7 +10,7 @@
         ]
 
 @app.factory 'Topic', [ '$resource', ( $resource ) ->
-        $resource '/:action.json', {},
+        $resource ':action.json', {},
                 all: { params: { action: 'topic' }, isArray: false, method: 'GET' }
         ]
 

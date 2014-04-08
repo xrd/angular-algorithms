@@ -16,7 +16,7 @@
 
   this.app.factory('Topic', [
     '$resource', function($resource) {
-      return $resource('/:action.json', {}, {
+      return $resource(':action.json', {}, {
         all: {
           params: {
             action: 'topic'

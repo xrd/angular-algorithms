@@ -22,20 +22,21 @@
       </div>
     </div>
     <div class='row'>
-      <h4 ng-show='why'>
-        Yes, you got it right.
-        The reason this is correct is:
-        <h5>{{ why }}</h5>
-      </h4>
-      {{ askWhys | json }}
-      <div class='item' ng-show='askWhys'>
-        You did not answer correctly. Why is this not {{incorrectWhy}}
+      <div class='col-xs-4'>
+        <h4 ng-show='why'>
+          Yes, you got it right.
+          The reason this is correct is:
+          <h5>{{ why }}</h5>
+        </h4>
         <div class='answer' ng-show='correct'>
           <div class='correct' ng-show='"yes" == correct'>You answered correctly!</div>
           <div class='correct' ng-show='"no" == correct'>Incorrect answer. Care to try again.</div>
         </div>
-        <div class='item alert alert-success' ng-click='answerWhy(w)' ng-repeat='w in askWhys'>
-          {{ w }}
+        <div class='item' ng-show='askWhys'>
+          Incorrect. Why is this {{correctAnswer}}
+          <div class='item alert alert-success' ng-click='answerWhy(w)' ng-repeat='w in askWhys'>
+            {{ w }}
+          </div>
         </div>
       </div>
     </div>

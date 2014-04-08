@@ -31,16 +31,35 @@
         $scope.selected = (op,index) ->
                 $scope.operator == op and $scope.index == index
 
-        $scope.askWhy = (correct, incorrect) ->
+        # -> Fisher–Yates shuffle algorithm
+        shuffleArray = (array) ->
+                m = array.length
+
+                #  While there remain elements to shuffle
+                while m
+                        i = Math.floor(Math.random() * m--)
+                        t = array[m];
+                        array[m] = array[i];
+                        array[i] = t;
+
+                array
+
+        $scope.askWhy = (correctWhy, correctAnswer) ->
+                uniqueWhys = {}
                 $scope.askWhys = []
                 for i in [0..3]
-                        $scope.askWhys.push $scope.whys[parseInt(Math.random()*$scope.whys.length)]
-                $scope.correctWhy = correct
-                $scope.incorrectWhy = incorrect
+                        uniqueWhys[i] = $scope.whys[parseInt(Math.random()*$scope.whys.length)]
+                uniqueWhys.correct = correctWhy
+                for k in Object.keys uniqueWhys
+                        $scope.askWhys.push uniqueWhys[k]
+                $scope.askWhys = shuffleArray $scope.askWhys
+                $scope.correctAnswer = correctAnswer
 
         $scope.answerWhy = (answer) ->
+                console.log "Answer: #{answer}"
                 $scope.correct = undefined
                 if $scope.correctWhy == answer
+                        $scope.askWhys = []
                         $scope.correct = "yes"
                         $timeout ( () -> $scope.correct = undefined; $scope.askWhys = [] ), 5000
                 else

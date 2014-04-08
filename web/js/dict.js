@@ -1,7 +1,7 @@
 (function() {
   this.app.controller('DictCtrl', [
     '$scope', '$timeout', function($scope, $timeout) {
-      var i, _i;
+      var i, shuffleArray, _i;
       $scope.attempts = 0;
       $scope.successes = 0;
       $scope.selector = void 0;
@@ -35,18 +35,38 @@
       $scope.selected = function(op, index) {
         return $scope.operator === op && $scope.index === index;
       };
-      $scope.askWhy = function(correct, incorrect) {
-        var _j;
+      shuffleArray = function(array) {
+        var m, t;
+        m = array.length;
+        while (m) {
+          i = Math.floor(Math.random() * m--);
+          t = array[m];
+          array[m] = array[i];
+          array[i] = t;
+        }
+        return array;
+      };
+      $scope.askWhy = function(correctWhy, correctAnswer) {
+        var k, uniqueWhys, _j, _k, _len, _ref;
+        uniqueWhys = {};
         $scope.askWhys = [];
         for (i = _j = 0; _j <= 3; i = ++_j) {
-          $scope.askWhys.push($scope.whys[parseInt(Math.random() * $scope.whys.length)]);
+          uniqueWhys[i] = $scope.whys[parseInt(Math.random() * $scope.whys.length)];
         }
-        $scope.correctWhy = correct;
-        return $scope.incorrectWhy = incorrect;
+        uniqueWhys.correct = correctWhy;
+        _ref = Object.keys(uniqueWhys);
+        for (_k = 0, _len = _ref.length; _k < _len; _k++) {
+          k = _ref[_k];
+          $scope.askWhys.push(uniqueWhys[k]);
+        }
+        $scope.askWhys = shuffleArray($scope.askWhys);
+        return $scope.correctAnswer = correctAnswer;
       };
       $scope.answerWhy = function(answer) {
+        console.log("Answer: " + answer);
         $scope.correct = void 0;
         if ($scope.correctWhy === answer) {
+          $scope.askWhys = [];
           $scope.correct = "yes";
           return $timeout((function() {
             $scope.correct = void 0;
