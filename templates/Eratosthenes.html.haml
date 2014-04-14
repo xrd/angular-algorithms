@@ -8,12 +8,17 @@
     %input{ 'ng-model' => 'stepInt', placeholder: 'Enter step interval' }
   .item
     %a.btn.btn-default{ 'ng-click' => 'SieveOfE()' } Calculate using Sieve of Eratosthenes
-  .item{ 'ng-show' => 'p' }
-    %h3{ 'ng-show' => 'p' }  P: {{ p }}
-    .item{ 'ng-show' => 'done' } Primes {{ primes }}
-  #placeholder{ 'style' => 'width: 700px;', 'ng-show' => 'p' }
-    %span.number{ 'ng-repeat' => 'n in numbers', 'ng-if' => '0 != $index' } 
+  .item{ 'ng-show' => 'the_state.p' }
+    %h3{ 'ng-show' => 'the_state.p' }  P: {{ the_state.p }}
+    %h6{ 'ng-show' => 'the_state.looking' } looking for next prime at {{ the_state.looking }}
+    %h6{ 'ng-show' => 'the_state.marking' } marking as not prime {{ the_state.marking }}
+    %h6{ 'ng-show' => 'the_state.found' } found prime at {{ the_state.found }}
+  #placeholder{ 'style' => 'width: 700px;', 'ng-show' => 'the_state.p' }
+    %span.number{ 'ng-repeat' => 'n in the_state.numbers', 'ng-if' => '0 != $index' } 
       .holder{ 'ng-class' => '{ composite : n.composite, prime : n.prime }' }
         {{n.number}}
         .tiny {{n.prime&&'prime'||n.composite&&'composite'||'&nbsp;'}}
 
+  .item{ 'ng-show' => 'the_state' } Primes {{ the_state.primes }}
+
+  {{ states.length }}

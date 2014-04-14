@@ -1,1 +1,4 @@
-@app.controller 'Lg
+@app.controller 'LgCtrl', [  '$scope', ($scope) ->
+
+
+        ]

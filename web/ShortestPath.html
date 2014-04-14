@@ -1,3 +1,10 @@
 <div class='algorithm' ng-controller='ShortestPathCtrl' ng-init='init()'>
-  {{ algorithms | json }}
+  <div class='using' ng-show='algorithm'>Using {{ algorithm.name }} algorithm for computation</div>
+  <select ng-model='algorithm' ng-options='a.name for a in algorithms'></select>
+  <button class='btn' ng-click='start()'>Start algorithm</button>
+  <div class='checkerboard' ng-show='algorithm.name == "Checkerboard"'>
+    <div class='row' ng-repeat='row in board'>
+      <span class='square' ng-repeat='square in row'>{{ square.cost }}</span>
+    </div>
+  </div>
 </div>

@@ -19,6 +19,10 @@
       });
     }));
     return describe("#calculateSoE", function() {
+      beforeEach(function() {
+        scope.save = angular.noop;
+        return scope.startAnimation = angular.noop;
+      });
       it("uses proper indexing (we want to ask for '1' and get back the number '1')", function() {
         scope.generateNumbers(100);
         return expect(scope.numbers[1].number).toBe(1);

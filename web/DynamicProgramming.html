@@ -1,0 +1,23 @@
+<div class='algorithm' ng-controller='DynProgCtrl' ng-init='init()'>
+  <h3>break things into smaller pieces and solve there.</h3>
+  <b>Optimal substructure</b>
+  Solution to entire problem relies on solutions to subproblems.
+  <b>Bellman Equation</b>
+  Functional equation: writes the value of a decision problem at a certain point
+  in time in terms of the payoff from some initial choices and the value of the remaining
+  decision problem that results from those choices.
+  Breaks problem into smaller problems, using Bellman's Principle of Optimality.
+  <b>Principle of Optimality</b>
+  An optimal policy has the property that whatever the initial state and initial decisions are, the remaining
+  decisions must constitute an optimal policy with regards to the state resulting from the initial decision.
+  <h5>To compute balance 0-1 matrix</h5>
+  For example, if n = 4, then
+  <pre>Existing solutions:
+  0 1 0 1   0 0 1 1    1 1 0 0    1 0 0 1
+  1 0 1 0   1 1 0 0    0 0 1 1    0 1 1 0
+  0 1 0 1   0 0 1 1    1 1 0 0    1 0 0 1
+  1 0 1 0   1 1 0 0    0 0 1 1    0 1 1 0</pre>
+  <h4>Brute Force</h4>
+  <h4>Backtracking</h4>
+  <h4>Dynamic Programming</h4>
+</div>

@@ -42,3 +42,12 @@
     -webkit-animation: explode 3s;
 }
 
+
+  .square {
+  display: inline-block;
+  height: 2.5em;
+  width: 2.5em;
+  text-align: center;
+  border: 1px solid black;
+  padding: 0.2em;
+  }

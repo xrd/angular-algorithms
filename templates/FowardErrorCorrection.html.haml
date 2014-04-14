@@ -1,8 +1,16 @@
+%style
+  .bit {
+  padding: 1em;
+  margin: 1em;
+  }
+
 %h3 FEC Algorithms
 .algorithm{ 'ng-controller' => 'FecCtrl', 'ng-init' => 'init()' }
 
-  %button.btn{ 'ng-click' => 'start()' }
-  %select{ 'ng-options' => 'a in a for algorithms', 'ng-model' => 'algorithm' }
+  %button.btn{ 'ng-click' => 'start()' } Start algorithm
+  %select{ 'ng-options' => 'a for a in algorithms', 'ng-model' => 'algorithm' }
+
+  %span.bit{ 'ng-repeat' => 'bit in bits', 'bit' => true }
     
 
 

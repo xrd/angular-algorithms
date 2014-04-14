@@ -1,5 +1,12 @@
+<style>
+  <div class='bit'>{</div>
+  padding: 1em;
+  margin: 1em;
+  }
+</style>
 <h3>FEC Algorithms</h3>
 <div class='algorithm' ng-controller='FecCtrl' ng-init='init()'>
-  <button class='btn' ng-click='start()'></button>
-  <select ng-model='algorithm' ng-options='a in a for algorithms'></select>
+  <button class='btn' ng-click='start()'>Start algorithm</button>
+  <select ng-model='algorithm' ng-options='a for a in algorithms'></select>
+  <span bit class='bit' ng-repeat='bit in bits'></span>
 </div>

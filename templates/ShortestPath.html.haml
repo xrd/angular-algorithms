@@ -1,2 +1,11 @@
+
 .algorithm{ 'ng-controller' => 'ShortestPathCtrl', 'ng-init' => 'init()' }
-  {{ algorithms | json }}
+  .using{ 'ng-show' => 'algorithm' } Using {{ algorithm.name }} algorithm for computation
+  %select{ 'ng-options' => 'a.name for a in algorithms', 'ng-model' => 'algorithm' }
+  %button.btn{ 'ng-click' => 'start()' } Start algorithm
+
+  .checkerboard{ 'ng-show' => 'algorithm.name == "Checkerboard"' }
+    .row{ 'ng-repeat' => 'row in board' }
+      %span.square{ 'ng-repeat' => 'square in row' } {{ square.cost }}
+
+

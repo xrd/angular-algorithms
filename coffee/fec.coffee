@@ -12,14 +12,23 @@
         $scope.generateBits = () ->
                 $scope.bits = []
                 for i in [0..100]
-                        $scope.bits.push parseInt( Math.random()*2 )
+                        $scope.bits.push { index: i, data: parseInt( Math.random()*2 ) }
 
-        $scope.3_1_repetition = () ->
+        $scope._3_1_repetition = () ->
+                console.log "Starting 3 1 repetition"
                 $scope.data = $scope.generateBits()
-                
 
         $scope.start = () ->
-                $scope[$scope.algorithm]()
+                console.log "Starting: #{$scope.algorithm}"
+                $scope["_"+$scope.algorithm]()
         
-        
+
+        ]
+
+@app.directive 'bit', [ '$timeout', () ->
+
+        return {
+                template: 'A bit is here {{bit.data}}'
+                }
+
         ]

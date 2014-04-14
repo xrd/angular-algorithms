@@ -44,7 +44,9 @@
         $scope.bounds = 102
         $scope.p = undefined
 
-        $scope.stepInt = 50
+        $scope.stepInt = 250
+        $scope.states = []
+        $scope.the_state = []
 
         $scope.clearPrimes = () ->
                 $scope.primes = []
@@ -71,32 +73,53 @@
 
         markC = (n) -> $scope.numbers[n].composite = true 
         isCorP = (i) -> $scope.numbers[i].composite or $scope.numbers[i].prime
+
+        $scope.save = ( arr ) ->
+                $scope.states.push {
+                        marking: arr?.marking,
+                        primes: angular.copy( $scope.primes ),
+                        looking : arr?.looking,
+                        found: arr?.found,
+                        p : $scope.p,
+                        numbers: angular.copy( $scope.numbers )
+                        }
         
         $scope.markThePs = ( n=2 ) ->
                 if ($scope.p * n) <= $scope.bounds
-                        markC( $scope.p * n )
-                        $timeout ( () -> $scope.markThePs(n+1) ), $scope.stepInt
+                        toMark = $scope.p * n
+                        markC( toMark )
+                        $scope.save( marking: toMark )
+                        $scope.markThePs(n+1)
                 else
                         keepGoing = false
                         for i in [$scope.p+1...$scope.bounds]
+                                $scope.save( looking: i )
                                 if not isCorP( i )
                                         keepGoing = true
-                                        $timeout ( () ->
-                                                $scope.primes.push i
-                                                $scope.numbers[i].prime = true
-                                                $scope.p = i
-                                                $timeout $scope.markThePs, $scope.stepInt
-                                                ), $scope.stepInt
+                                        $scope.primes.push i
+                                        $scope.numbers[i].prime = true
+                                        $scope.p = i
+                                        $scope.save( found: i )
+                                        $scope.markThePs()
                                         break
                         $scope.done = true unless keepGoing
 
         $scope.SieveOfE = () ->
                 $scope.primes = []
+                $scope.save()
                 $scope.numbers[0].prime = true
                 $scope.numbers[1].prime = true
                 $scope.numbers[2].prime = true
                 $scope.p = 2
+                $timeout $scope.startAnimation, 1000 
                 $scope.markThePs()
+
+        $scope.startAnimation = () ->
+                console.log "Jumping to next state"
+                if $scope.states.length > 1
+                        $scope.the_state = $scope.states.shift() 
+                        $timeout( $scope.startAnimation, $scope.stepInt )
+                        
 
         $scope.generateNumbers = (bounds) ->
                 $scope.bounds = bounds

@@ -16,6 +16,10 @@ describe "Test prime calculation", () ->
 
         describe "#calculateSoE", ->
 
+                beforeEach ->
+                        scope.save = angular.noop
+                        scope.startAnimation = angular.noop
+
                 it "uses proper indexing (we want to ask for '1' and get back the number '1')", ->
                         scope.generateNumbers( 100 )
                         expect( scope.numbers[1].number ).toBe 1

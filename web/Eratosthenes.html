@@ -10,16 +10,20 @@
   <div class='item'>
     <a class='btn btn-default' ng-click='SieveOfE()'>Calculate using Sieve of Eratosthenes</a>
   </div>
-  <div class='item' ng-show='p'>
-    <h3 ng-show='p'>P: {{ p }}</h3>
-    <div class='item' ng-show='done'>Primes {{ primes }}</div>
+  <div class='item' ng-show='the_state.p'>
+    <h3 ng-show='the_state.p'>P: {{ the_state.p }}</h3>
+    <h6 ng-show='the_state.looking'>looking for next prime at {{ the_state.looking }}</h6>
+    <h6 ng-show='the_state.marking'>marking as not prime {{ the_state.marking }}</h6>
+    <h6 ng-show='the_state.found'>found prime at {{ the_state.found }}</h6>
   </div>
-  <div id='placeholder' ng-show='p' style='width: 700px;'>
-    <span class='number' ng-if='0 != $index' ng-repeat='n in numbers'>
+  <div id='placeholder' ng-show='the_state.p' style='width: 700px;'>
+    <span class='number' ng-if='0 != $index' ng-repeat='n in the_state.numbers'>
       <div class='holder' ng-class='{ composite : n.composite, prime : n.prime }'>
         {{n.number}}
         <div class='tiny'>{{n.prime&&'prime'||n.composite&&'composite'||'&nbsp;'}}</div>
       </div>
     </span>
   </div>
+  <div class='item' ng-show='the_state'>Primes {{ the_state.primes }}</div>
+  {{ states.length }}
 </div>

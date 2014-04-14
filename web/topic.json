@@ -32,6 +32,9 @@
     },
     "ShortestPath": {
       "name": "ShortestPath"
+    },
+    "DynamicProgramming": {
+      "name": "DynamicProgramming"
     }
   }
 }

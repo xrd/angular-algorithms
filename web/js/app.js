@@ -84,7 +84,9 @@
       $scope.algorithms = ['SieveOfE', 'Other', 'Another'];
       $scope.bounds = 102;
       $scope.p = void 0;
-      $scope.stepInt = 50;
+      $scope.stepInt = 250;
+      $scope.states = [];
+      $scope.the_state = [];
       $scope.clearPrimes = function() {
         return $scope.primes = [];
       };
@@ -119,27 +121,43 @@
       isCorP = function(i) {
         return $scope.numbers[i].composite || $scope.numbers[i].prime;
       };
+      $scope.save = function(arr) {
+        return $scope.states.push({
+          marking: arr != null ? arr.marking : void 0,
+          primes: angular.copy($scope.primes),
+          looking: arr != null ? arr.looking : void 0,
+          found: arr != null ? arr.found : void 0,
+          p: $scope.p,
+          numbers: angular.copy($scope.numbers)
+        });
+      };
       $scope.markThePs = function(n) {
-        var i, keepGoing, _i, _ref, _ref1;
+        var i, keepGoing, toMark, _i, _ref, _ref1;
         if (n == null) {
           n = 2;
         }
         if (($scope.p * n) <= $scope.bounds) {
-          markC($scope.p * n);
-          return $timeout((function() {
-            return $scope.markThePs(n + 1);
-          }), $scope.stepInt);
+          toMark = $scope.p * n;
+          markC(toMark);
+          $scope.save({
+            marking: toMark
+          });
+          return $scope.markThePs(n + 1);
         } else {
           keepGoing = false;
           for (i = _i = _ref = $scope.p + 1, _ref1 = $scope.bounds; _ref <= _ref1 ? _i < _ref1 : _i > _ref1; i = _ref <= _ref1 ? ++_i : --_i) {
+            $scope.save({
+              looking: i
+            });
             if (!isCorP(i)) {
               keepGoing = true;
-              $timeout((function() {
-                $scope.primes.push(i);
-                $scope.numbers[i].prime = true;
-                $scope.p = i;
-                return $timeout($scope.markThePs, $scope.stepInt);
-              }), $scope.stepInt);
+              $scope.primes.push(i);
+              $scope.numbers[i].prime = true;
+              $scope.p = i;
+              $scope.save({
+                found: i
+              });
+              $scope.markThePs();
               break;
             }
           }
@@ -150,11 +168,20 @@
       };
       $scope.SieveOfE = function() {
         $scope.primes = [];
+        $scope.save();
         $scope.numbers[0].prime = true;
         $scope.numbers[1].prime = true;
         $scope.numbers[2].prime = true;
         $scope.p = 2;
+        $timeout($scope.startAnimation, 1000);
         return $scope.markThePs();
+      };
+      $scope.startAnimation = function() {
+        console.log("Jumping to next state");
+        if ($scope.states.length > 1) {
+          $scope.the_state = $scope.states.shift();
+          return $timeout($scope.startAnimation, $scope.stepInt);
+        }
       };
       $scope.generateNumbers = function(bounds) {
         var i, _i, _results;
