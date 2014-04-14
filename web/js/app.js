@@ -167,7 +167,7 @@
         }
       };
       $scope.SieveOfE = function() {
-        $scope.primes = [];
+        $scope.primes = [1, 2];
         $scope.save();
         $scope.numbers[0].prime = true;
         $scope.numbers[1].prime = true;
