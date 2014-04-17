@@ -16,6 +16,8 @@
 
 @app.controller 'GICtrl', [ '$scope', ($scope) ->
 
+        $scope.enabled = { "enabled" : true }
+
         $scope.draw = (data, xTick=10 ) ->
 
                 $scope.options = {

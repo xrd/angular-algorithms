@@ -9,8 +9,8 @@
         .col-md-2{ 'ng-controller' => 'TopicsCtrl' }
           %h3 Topics
           %ul
-            %li{ 'ng-repeat' => 'topic in topics' } 
-              %a{ 'ng-href' => "index.html#algorithms/{{topic.name}}" } {{ topic.name }}
+            %li{ 'ng-repeat' => 'topic in topics | filter:enabled' }
+              %a{ 'ng-href' => "index.html#algorithms/{{topic.name}}" , 'ng-show' => 'topic.enabled' } {{ topic.name }}
         .col-md-10
           %h3 Algorithm
           .label{ 'ng-show' => 'status' } {{ status }}

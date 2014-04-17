@@ -30,6 +30,9 @@
 
   this.app.controller('GICtrl', [
     '$scope', function($scope) {
+      $scope.enabled = {
+        "enabled": true
+      };
       return $scope.draw = function(data, xTick) {
         var placeholder;
         if (xTick == null) {

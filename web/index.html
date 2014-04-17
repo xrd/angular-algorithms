@@ -10,8 +10,8 @@
         <div class='col-md-2' ng-controller='TopicsCtrl'>
           <h3>Topics</h3>
           <ul>
-            <li ng-repeat='topic in topics'>
-              <a ng-href='index.html#algorithms/{{topic.name}}'>{{ topic.name }}</a>
+            <li ng-repeat='topic in topics | filter:enabled'>
+              <a ng-href='index.html#algorithms/{{topic.name}}' ng-show='topic.enabled'>{{ topic.name }}</a>
             </li>
           </ul>
         </div>
