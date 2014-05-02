@@ -7,34 +7,22 @@ mod.service 'Algorithm', [ '$timeout', ($timeout) ->
                 world.the_state = {}
                 
         save = (arr) ->
-                # console.log "Array: %o", arr
-                world.states.push {
-                        marking: arr?.marking,
-                        primes: angular.copy( arr?.primes ),
-                        looking : arr?.looking,
-                        found: arr?.found,
-                        p : arr?.p,
-                        numbers: angular.copy( arr?.numbers )
-                        }
+                new_obj = {}
+                for k in Object.keys( arr )
+                        new_obj[k] = angular.copy( arr[k] )
+                world.states.push new_obj
+
         animate =  (stepInt) ->
                 $timeout ( () ->
-                        console.log "Starting animation..."
                         reallyAnimate( stepInt ) ), 2000
-
-        printCount = 0
 
         addArrayItemToWorldState = (x,i,obj) ->
                 if obj instanceof Object
-                        console.log "Found hash obj"
                         for k in Object.keys( obj )
-                                if printCount >  1000 && printCount < 1030
-                                        console.log "Old/New", world.the_state[x][i][k], obj[k]
                                 world.the_state[x][i] = {} unless world.the_state[x][i]
                                 world.the_state[x][i][k] = obj[k]
                 else
                         world.the_state[x][i] = obj
-                printCount += 1
-
                                                 
         reallyAnimate = (stepInt) ->
                 if world.states.length > 1
