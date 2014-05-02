@@ -1,52 +1,68 @@
 {
   "items": {
     "Quicksort": {
-        "enabled": false,
-        "name": "Quicksort"
+      "enabled": true,
+      "name": "Quicksort"
     },
-      "Heapsort": {
-          "enabled": false,
-          "name": "Heapsort"
-      },
-      "CalculateE": {
-          "enabled": true,
-          "name": "CalculateE"
-      },
-      "JavaScriptStrictMode": {
-          "enabled": false,
-          "name": "JavaScriptStrictMode"
-      },
-      "PrimeCalc": {
-          "enabled": false,
-          "name": "PrimeCalc"
-      },
-      "Eratosthenes": {
-          "enabled": true,
-          "name": "Eratosthenes"
-      },
-      "BigO": {
-          "enabled": false,
-          "name": "BigO"
-      },
-      "ConwaysGameOfLife": {
-          "enabled": false,
-          "name": "ConwaysGameOfLife"
-      },
-      "Dictionary": {
-          "enabled": true,
-          "name": "Dictionary"
-      },
-      "FowardErrorCorrection": {
-          "enabled": false,
-          "name": "FowardErrorCorrection"
-      },
-      "ShortestPath": {
-          "enabled": false,
-          "name": "ShortestPath"
-      },
-      "DynamicProgramming": {
-          "enabled": false,
-          "name": "DynamicProgramming"
-      }
+    "Heapsort": {
+      "enabled": true,
+      "name": "Heapsort"
+    },
+    "CalculateE": {
+      "enabled": true,
+      "name": "CalculateE"
+    },
+    "JavaScriptStrictMode": {
+      "enabled": false,
+      "name": "JavaScriptStrictMode"
+    },
+    "PrimeCalc": {
+      "enabled": false,
+      "name": "PrimeCalc"
+    },
+    "Eratosthenes": {
+      "enabled": true,
+      "name": "Eratosthenes"
+    },
+    "BigO": {
+      "enabled": false,
+      "name": "BigO"
+    },
+    "ConwaysGameOfLife": {
+      "enabled": false,
+      "name": "ConwaysGameOfLife"
+    },
+    "Dictionary": {
+      "enabled": true,
+      "name": "Dictionary"
+    },
+    "FowardErrorCorrection": {
+      "enabled": false,
+      "name": "FowardErrorCorrection"
+    },
+    "ShortestPath": {
+      "enabled": false,
+      "name": "ShortestPath"
+    },
+    "DynamicProgramming": {
+      "enabled": false,
+      "name": "DynamicProgramming"
+    },
+    "Ops": {
+      "enabled": true,
+      "name": "Ops"
+    },
+    "RedBlackTrees": {
+      "enabled": true,
+      "name": "RedBlackTrees"
+    },
+    "AvlTrees": {
+      "enabled": true,
+      "name": "AvlTrees"
+    },
+    "Djikstra": {
+      "enabled": true,
+      "name": "Djikstra"
+    }
   }
 }

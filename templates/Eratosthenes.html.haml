@@ -1,3 +1,5 @@
+%h1 Sieve of Eratosthenes
+
 .algorithm{ 'ng-controller' => 'PrimeCalcCtrl', 'ng-init' => 'generateNumbers(100)' }
 
   .item
@@ -11,7 +13,7 @@
   .item{ 'ng-show' => 'the_state.p' }
     %h3{ 'ng-show' => 'the_state.p' }  P: {{ the_state.p }}
     %h6{ 'ng-show' => 'the_state.looking' } looking for next prime at {{ the_state.looking }}
-    %h6{ 'ng-show' => 'the_state.marking' } marking as not prime {{ the_state.marking }}
+    %h6{ 'ng-show' => 'the_state.marking' } marking as composite {{ the_state.marking }}
     %h6{ 'ng-show' => 'the_state.found' } found prime at {{ the_state.found }}
   #placeholder{ 'style' => 'width: 700px;', 'ng-show' => 'the_state.p' }
     %span.number{ 'ng-repeat' => 'n in the_state.numbers', 'ng-if' => '0 != $index' } 
@@ -20,3 +22,4 @@
         .tiny {{n.prime&&'prime'||n.composite&&'composite'||'&nbsp;'}}
 
   .item{ 'ng-show' => 'the_state' } Primes {{ the_state.primes }}
+

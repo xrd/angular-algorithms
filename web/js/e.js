@@ -21,7 +21,7 @@
       $scope.ss = function(msg) {
         return $scope.status = msg;
       };
-      $scope.count = 10;
+      $scope.count = 100;
       $scope.timeAndPlot = function(n) {
         var num, _i, _ref;
         $scope.data = [];

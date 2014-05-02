@@ -1,3 +1,4 @@
+<h1>Sieve of Eratosthenes</h1>
 <div class='algorithm' ng-controller='PrimeCalcCtrl' ng-init='generateNumbers(100)'>
   <div class='item'>
     <h4>Algorithm Complexity: O(n log log n)</h4>
@@ -13,7 +14,7 @@
   <div class='item' ng-show='the_state.p'>
     <h3 ng-show='the_state.p'>P: {{ the_state.p }}</h3>
     <h6 ng-show='the_state.looking'>looking for next prime at {{ the_state.looking }}</h6>
-    <h6 ng-show='the_state.marking'>marking as not prime {{ the_state.marking }}</h6>
+    <h6 ng-show='the_state.marking'>marking as composite {{ the_state.marking }}</h6>
     <h6 ng-show='the_state.found'>found prime at {{ the_state.found }}</h6>
   </div>
   <div id='placeholder' ng-show='the_state.p' style='width: 700px;'>

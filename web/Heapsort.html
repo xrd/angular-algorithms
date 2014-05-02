@@ -1,3 +1,33 @@
 <div class='algorithm' ng-controller='HeapsortCtrl'>
+  <h3>Steps</h3>
+  <ol>
+    <li>First step: heap is built out of the data</li>
+    <li>Heap is binary tree, but using a simple array.</li>
+    <li>
+      Algorithm for finding node:
+      <pre>&nbsp;
+      iParent = floor(i-1)/2
+      iLeftChild = 2*i + 1
+      iRightChild = 2*i + 2
+      &nbsp;</pre>
+    </li>
+    <li>Items are placed into heap, tree structure where top item at a node dominates all others.</li>
+    <li>After put into heap, items are extracted one by one to build sorted array.</li>
+  </ol>
+  <h3>Notes on heaps</h3>
+  <ol>
+    <li>All nodes dominate their children</li>
+    <li>Insertion: put node at the bottom, and then bubble the node up.</li>
+    <li>Deletion: remove the node, then bubble down the node until it satisfies the dominating properties.</li>
+  </ol>
+  <h3>Comparisons</h3>
+  <ol>
+    <li>
+      Competes with Quicksort.
+    </li>
+    <li>Heapsort is better against attacks because it cannot ever be O(n^2) like Quicksort</li>
+    <li>Embedded systems often use Heapsort because auxiliary storage is bounded and runtime is constrained.</li>
+    <li>Competes with Merge sort. Merge sort uses</li>
+  </ol>
   <div id='placeholder' style='width:600px;height:300px;'></div>
 </div>

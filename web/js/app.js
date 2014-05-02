@@ -1,5 +1,5 @@
 (function() {
-  this.app = angular.module('gi', ['ngResource', 'ngRoute', 'ngAnimate']);
+  this.app = angular.module('gi', ['ngResource', 'ngRoute', 'ngAnimate', 'AnimateAlgorithms']);
 
   this.app.config([
     '$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
@@ -81,15 +81,14 @@
   ]);
 
   this.app.controller('PrimeCalcCtrl', [
-    '$scope', '$timeout', function($scope, $timeout) {
+    '$scope', 'Algorithm', function($scope, Algorithm) {
       var isCorP, markC;
       $scope.algorithm = void 0;
       $scope.algorithms = ['SieveOfE', 'Other', 'Another'];
       $scope.bounds = 102;
       $scope.p = void 0;
+      $scope.algorithm = Algorithm;
       $scope.stepInt = 250;
-      $scope.states = [];
-      $scope.the_state = [];
       $scope.clearPrimes = function() {
         return $scope.primes = [];
       };
@@ -124,16 +123,6 @@
       isCorP = function(i) {
         return $scope.numbers[i].composite || $scope.numbers[i].prime;
       };
-      $scope.save = function(arr) {
-        return $scope.states.push({
-          marking: arr != null ? arr.marking : void 0,
-          primes: angular.copy($scope.primes),
-          looking: arr != null ? arr.looking : void 0,
-          found: arr != null ? arr.found : void 0,
-          p: $scope.p,
-          numbers: angular.copy($scope.numbers)
-        });
-      };
       $scope.markThePs = function(n) {
         var i, keepGoing, toMark, _i, _ref, _ref1;
         if (n == null) {
@@ -142,23 +131,32 @@
         if (($scope.p * n) <= $scope.bounds) {
           toMark = $scope.p * n;
           markC(toMark);
-          $scope.save({
-            marking: toMark
+          Algorithm.save({
+            marking: toMark,
+            primes: $scope.primes,
+            numbers: $scope.numbers,
+            p: $scope.p
           });
           return $scope.markThePs(n + 1);
         } else {
           keepGoing = false;
           for (i = _i = _ref = $scope.p + 1, _ref1 = $scope.bounds; _ref <= _ref1 ? _i < _ref1 : _i > _ref1; i = _ref <= _ref1 ? ++_i : --_i) {
-            $scope.save({
-              looking: i
+            Algorithm.save({
+              looking: i,
+              primes: $scope.primes,
+              numbers: $scope.numbers,
+              p: $scope.p
             });
             if (!isCorP(i)) {
               keepGoing = true;
               $scope.primes.push(i);
               $scope.numbers[i].prime = true;
               $scope.p = i;
-              $scope.save({
-                found: i
+              Algorithm.save({
+                found: i,
+                primes: $scope.primes,
+                numbers: $scope.numbers,
+                p: $scope.p
               });
               $scope.markThePs();
               break;
@@ -171,20 +169,15 @@
       };
       $scope.SieveOfE = function() {
         $scope.primes = [1, 2];
-        $scope.save();
+        Algorithm.reset();
+        $scope.the_state = $scope.algorithm.the_state;
+        $scope.states = $scope.algorithm.states;
         $scope.numbers[0].prime = true;
         $scope.numbers[1].prime = true;
         $scope.numbers[2].prime = true;
         $scope.p = 2;
-        $timeout($scope.startAnimation, 1000);
-        return $scope.markThePs();
-      };
-      $scope.startAnimation = function() {
-        console.log("Jumping to next state");
-        if ($scope.states.length > 1) {
-          $scope.the_state = $scope.states.shift();
-          return $timeout($scope.startAnimation, $scope.stepInt);
-        }
+        $scope.markThePs();
+        return $scope.algorithm.animate($scope.stepInt);
       };
       $scope.generateNumbers = function(bounds) {
         var i, _i, _results;

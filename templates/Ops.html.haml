@@ -1,0 +1,12 @@
+.controller{ 'ng-controller' => 'OpsCtrl' }
+
+  .questions
+    .item Why choose each of these: mergesort is great with linked lists because no random order needed (for example)
+    .item Run time of each. What is worst and best?
+
+  %h6 Algorithms
+  .algorithm{ 'ng-repeat' => 'a in algorithms' } {{ a }}
+
+  %h6 Data Structures
+  .algorithm{ 'ng-repeat' => 'd in ds' } {{ d }}
+

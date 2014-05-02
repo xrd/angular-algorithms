@@ -20,6 +20,7 @@
     %li All nodes dominate their children
     %li Insertion: put node at the bottom, and then bubble the node up.
     %li Deletion: remove the node, then bubble down the node until it satisfies the dominating properties.
+    
 
   %h3 Comparisons
   %ol

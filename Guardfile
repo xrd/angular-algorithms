@@ -29,7 +29,7 @@ def add_to_json( name )
     parsed = { 'items' => {} }
   end
   unless parsed['items'][name]
-    parsed['items'][name] = { name: name }
+    parsed['items'][name] = { name: name, enabled: false }
   end
   puts "Writing out: #{parsed.inspect}"
   File.write( TOPICS_JSON, JSON.pretty_generate( parsed ) )

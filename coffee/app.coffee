@@ -1,6 +1,7 @@
 # 'use strict'
 
-@app = angular.module 'gi', [ 'ngResource', 'ngRoute', 'ngAnimate' ]
+
+@app = angular.module 'gi', [ 'ngResource', 'ngRoute', 'ngAnimate', 'AnimateAlgorithms' ]
 
 @app.config [ '$routeProvider', '$locationProvider', ( $routeProvider, $locationProvider ) ->
         $routeProvider.when '/algorithms/:item',
@@ -39,16 +40,17 @@
                         $scope.topics.push response.items[key] if key and value
         ]
 
-@app.controller 'PrimeCalcCtrl', [ '$scope', '$timeout', ($scope, $timeout) ->
+
+@app.controller 'PrimeCalcCtrl', [ '$scope', 'Algorithm', ($scope, Algorithm) ->
 
         $scope.algorithm = undefined
         $scope.algorithms = [ 'SieveOfE', 'Other', 'Another' ]
         $scope.bounds = 102
         $scope.p = undefined
 
+        $scope.algorithm = Algorithm
+
         $scope.stepInt = 250
-        $scope.states = []
-        $scope.the_state = []
 
         $scope.clearPrimes = () ->
                 $scope.primes = []
@@ -76,52 +78,40 @@
         markC = (n) -> $scope.numbers[n].composite = true 
         isCorP = (i) -> $scope.numbers[i].composite or $scope.numbers[i].prime
 
-        $scope.save = ( arr ) ->
-                $scope.states.push {
-                        marking: arr?.marking,
-                        primes: angular.copy( $scope.primes ),
-                        looking : arr?.looking,
-                        found: arr?.found,
-                        p : $scope.p,
-                        numbers: angular.copy( $scope.numbers )
-                        }
         
         $scope.markThePs = ( n=2 ) ->
                 if ($scope.p * n) <= $scope.bounds
                         toMark = $scope.p * n
                         markC( toMark )
-                        $scope.save( marking: toMark )
+                        Algorithm.save( { marking: toMark, primes: $scope.primes, numbers: $scope.numbers, p: $scope.p } )
                         $scope.markThePs(n+1)
                 else
                         keepGoing = false
                         for i in [$scope.p+1...$scope.bounds]
-                                $scope.save( looking: i )
+                                Algorithm.save( { looking: i, primes: $scope.primes, numbers: $scope.numbers, p: $scope.p } )
                                 if not isCorP( i )
                                         keepGoing = true
                                         $scope.primes.push i
                                         $scope.numbers[i].prime = true
                                         $scope.p = i
-                                        $scope.save( found: i )
+                                        Algorithm.save( { found: i, primes: $scope.primes, numbers: $scope.numbers, p: $scope.p } )
                                         $scope.markThePs()
                                         break
                         $scope.done = true unless keepGoing
 
         $scope.SieveOfE = () ->
                 $scope.primes = [1,2]
-                $scope.save()
+                
+                Algorithm.reset()
+                $scope.the_state = $scope.algorithm.the_state
+                $scope.states = $scope.algorithm.states
+                
                 $scope.numbers[0].prime = true
                 $scope.numbers[1].prime = true
                 $scope.numbers[2].prime = true
                 $scope.p = 2
-                $timeout $scope.startAnimation, 1000 
                 $scope.markThePs()
-
-        $scope.startAnimation = () ->
-                console.log "Jumping to next state"
-                if $scope.states.length > 1
-                        $scope.the_state = $scope.states.shift() 
-                        $timeout( $scope.startAnimation, $scope.stepInt )
-                        
+                $scope.algorithm.animate( $scope.stepInt )
 
         $scope.generateNumbers = (bounds) ->
                 $scope.bounds = bounds

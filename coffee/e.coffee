@@ -21,7 +21,7 @@
                 $scope.status = msg
                 # console.log msg
 
-        $scope.count = 10
+        $scope.count = 100
 
         $scope.timeAndPlot = (n) ->
                 $scope.data = []
